@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>SSERD - International Moon Day - 2022 - Master Class</title>
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+<div id="show"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+
+
+$(document).ready(function(){
+  setTimeout(function(){
+  var go = checkurl();
+           if(go==1) {
+            console.log("ended");
+ return;
+}
+            console.log("retrying");
+        }, 3000);
+
+
+});
+
+function checkurl(){
+$.getJSON("https://genex.space/url.json",function(result){
+
+var act = jQuery.parseJSON(JSON.stringify(result));
+//    document.getElementById("a").innerHTML = "Object Name : "+obj.is_live + "<br> Object Age : " + obj.url;
+
+if(act.is_live=="0"){
+                console.log("retry");
+    return "0";
+}
+else{
+                console.log("showing embed");
+
+$("#show").html("<h3 class=\"text-danger\">Click Play to start</h3><iframe id=\"ytplayer\" type=\"text/html\" width=\"720\" height=\"405\" src=\"https://www.youtube.com/embed/" + act.url + "?autoplay=1&;enablejsapi=1\" frameborder=\"0\" autoplay=\"1\" frameborder=\"0\" allowfullscreen>");
+return "1";
+}
+
+
+  });
+}
+</script>    </body>
+</html>
